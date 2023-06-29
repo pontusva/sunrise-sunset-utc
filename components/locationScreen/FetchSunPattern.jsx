@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
+import { Text } from 'react-native-paper'
 
 export const FetchSunPattern = ({ lat, lon }) => {
   const [sunPattern, setSunPattern] = useState(null)
@@ -9,21 +10,20 @@ export const FetchSunPattern = ({ lat, lon }) => {
     )
     const data = await response.json()
     setSunPattern(data)
-    console.log(data)
   }
 
   useEffect(() => {
     fetchSunPattern()
   }, [lat, lon])
   return (
-    // TODO: fix keyExtractor[]
-
     <>
       {sunPattern && (
         <View>
-          <Text>Sunrise: {sunPattern.results.sunrise}</Text>
-          <Text>Sunset: {sunPattern.results.sunset}</Text>
-          <Text>Day length: {sunPattern.results.day_length}</Text>
+          <Text variant="bodyLarge">Sunrise: {sunPattern.results.sunrise}</Text>
+          <Text variant="bodyLarge">Sunset: {sunPattern.results.sunset}</Text>
+          <Text variant="bodyLarge">
+            Day length: {sunPattern.results.day_length}
+          </Text>
         </View>
       )}
     </>

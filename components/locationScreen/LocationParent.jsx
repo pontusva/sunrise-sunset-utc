@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 // import { Text } from 'react-native-paper'
 import styled from 'styled-components/native'
-import { View, Text, ImageBackground } from 'react-native'
 
 import { CityInput } from './CityInput'
 
@@ -33,6 +32,9 @@ export const LocationParent = ({ navigation }) => {
 }
 
 const Container = styled.View`
-  height: 350px;
+  flex: 1;
+
+  /* height: 200px; */
+  /* margin: 20px; */
   /* border: 5px solid orange; */
 `

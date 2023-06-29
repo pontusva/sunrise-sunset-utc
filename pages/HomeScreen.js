@@ -1,13 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { Button, View } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import { SunSet } from '../components/homeScreen/SunSet'
 import { useState, useEffect, useCallback } from 'react'
 
 const Container = styled.View`
   flex: 1;
-  background-color: #090607;
 `
 SplashScreen.preventAutoHideAsync()
 

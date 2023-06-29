@@ -1,27 +1,16 @@
-import { ImageBackground, View, Text } from 'react-native'
-
+import { View } from 'react-native-paper'
+import { useTheme, Text } from 'react-native-paper'
 import styled from 'styled-components/native'
 
 export const SunSet = () => {
+  const theme = useTheme()
   return (
-    <Container>
-      <BackgroundImage
-        style={{ flex: 1 }}
-        source={require('../../assets/sunset.jpg')}
-        resizeMode="cover"
-      >
-        <Text>asd</Text>
-      </BackgroundImage>
+    <Container style={{ backgroundColor: theme.colors.background }}>
+      <Text style={{ color: theme.colors.onBackground }}>Hello</Text>
     </Container>
   )
 }
 
 const Container = styled.View`
   flex: 1;
-`
-
-const BackgroundImage = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
 `

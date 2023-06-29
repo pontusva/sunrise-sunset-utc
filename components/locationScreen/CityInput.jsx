@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/native'
-import { TextInput } from 'react-native-paper'
-import { Button, View, Text, Keyboard } from 'react-native'
+import { TextInput, Text, Button } from 'react-native-paper'
+import { View, Keyboard } from 'react-native'
 import { FetchSunPattern } from './FetchSunPattern'
+import { FadeInView } from '../FadeInView'
 
 export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
-  const [lat, setLat] = useState(0)
-  const [lon, setLon] = useState(0)
+  const [lat, setLat] = useState('')
+  const [lon, setLon] = useState('')
   const [visibleCity, setVisibleCity] = useState('')
 
   const handleLatLonPromise = async () => {
     fetchLocation().then((res) => {
       setLat(res[0].lat)
       setLon(res[0].lon)
-      console.log(lat, lon)
     })
   }
 
   return (
     <Container>
       <DataContainer>
-        {visibleCity && <Text>{visibleCity}</Text>}
-        {lat && lon ? <FetchSunPattern lat={lat} lon={lon} /> : null}
+        <FadeInView>
+          {visibleCity && <Text variant="headlineLarge">{visibleCity}</Text>}
+          {lat && lon ? <FetchSunPattern lat={lat} lon={lon} /> : null}
+        </FadeInView>
       </DataContainer>
+
       <View>
         <TextInput
           mode="outlined"
@@ -38,12 +41,19 @@ export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
           }}
         />
         <Button
-          title="Fetch"
+          mode="contained-tonal"
+          dark
+          style={{ width: '75%', alignSelf: 'center', marginTop: 10 }}
+          theme={{ roundness: 1.5 }}
           onPress={async () => {
+            setVisibleCity(city)
+            setCity('')
             await handleLatLonPromise()
             Keyboard.dismiss()
           }}
-        />
+        >
+          Tap
+        </Button>
       </View>
     </Container>
   )
@@ -51,11 +61,10 @@ export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
 
 const Container = styled.View`
   flex: 1;
-  /* border: 5px solid pink; */
 `
 
 const DataContainer = styled.View`
-  flex: 3;
+  /* flex: 3; */
   align-items: center;
   justify-content: center;
   /* border: 5px solid orange; */
