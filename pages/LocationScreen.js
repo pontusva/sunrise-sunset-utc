@@ -8,6 +8,7 @@ import {
 import { useTheme, Appbar } from 'react-native-paper'
 import styled from 'styled-components/native'
 import { LocationParent } from '../components/locationScreen/LocationParent'
+import ThemeSwitch from '../components/ThemeSwitch'
 import { useState } from 'react'
 
 export const LocationScreen = ({ navigation }) => {
@@ -25,6 +26,8 @@ export const LocationScreen = ({ navigation }) => {
       <Appbar.Header elevated statusBarHeight={5}>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title="Sunset/Sunrise" />
+
+        <ThemeSwitch />
       </Appbar.Header>
       <DissmissKeyboard style={{ backgroundColor: theme.colors.background }}>
         {/* <TouchableWithoutFeedback> */}

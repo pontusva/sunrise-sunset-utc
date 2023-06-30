@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/native'
+import { Appbar } from 'react-native-paper'
 import * as SplashScreen from 'expo-splash-screen'
 import { SunSet } from '../components/homeScreen/SunSet'
 import { useState, useEffect, useCallback } from 'react'
+import ThemeSwitch from '../components/ThemeSwitch'
 
-const Container = styled.View`
-  flex: 1;
-`
 SplashScreen.preventAutoHideAsync()
 
 export const HomeScreen = ({ navigation }) => {
@@ -42,8 +41,17 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <>
       <Container onLayout={onLayoutRootView}>
+        <Appbar.Header elevated statusBarHeight={5}>
+          <Appbar.Content title="Home" />
+
+          <ThemeSwitch />
+        </Appbar.Header>
         <SunSet />
       </Container>
     </>
   )
 }
+
+const Container = styled.View`
+  flex: 1;
+`
