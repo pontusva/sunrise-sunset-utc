@@ -1,20 +1,16 @@
-import React from 'react'
 import { View } from 'react-native'
-import { useTheme } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Button } from 'react-native-paper'
+import { useTheme, Appbar } from 'react-native-paper'
+import ThemeSwitch from '../components/ThemeSwitch'
 
 export const ProfileScreen = ({ navigation }) => {
   const theme = useTheme()
   return (
-    <SafeAreaView>
-      <View style={{ backgroundColor: theme.colors.background }}>
-        <Button
-          mode="contained"
-          onPress={() => navigation.navigate('Notifications')}
-          title="Go to notifications"
-        />
-      </View>
-    </SafeAreaView>
+    <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+      <Appbar.Header elevated statusBarHeight={5}>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
+        <Appbar.Content title="Profile" />
+        <ThemeSwitch />
+      </Appbar.Header>
+    </View>
   )
 }

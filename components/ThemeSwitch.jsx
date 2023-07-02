@@ -1,17 +1,17 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { Switch } from 'react-native-paper'
 import { PreferencesContext } from '../context/ThemeContext'
 
 const ThemeSwitch = () => {
-  const [isSwitchOn, setIsSwitchOn] = useState(false)
-  const { toggleTheme } = useContext(PreferencesContext)
+  const { isThemeDark, toggleTheme } = useContext(PreferencesContext)
 
-  const onToggleSwitch = () => {
-    toggleTheme()
-    setIsSwitchOn(!isSwitchOn)
-  }
-
-  return <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
+  return (
+    <Switch
+      style={{ marginRight: 20 }}
+      value={isThemeDark}
+      onValueChange={toggleTheme}
+    />
+  )
 }
 
 export default ThemeSwitch

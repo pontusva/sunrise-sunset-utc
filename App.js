@@ -23,6 +23,7 @@ import { PreferencesContext } from './context/ThemeContext'
 import { useState, useCallback, useMemo } from 'react'
 
 const Tab = createMaterialBottomTabNavigator()
+
 const { LightTheme, DarkTheme } = adaptNavigationTheme({
   reactNavigationLight: NavigationDefaultTheme,
   reactNavigationDark: NavigationDarkTheme,
@@ -67,8 +68,6 @@ export default function App() {
             >
               <NavigationContainer theme={theme}>
                 <Tab.Navigator
-                  sceneAnimationEnabled={true}
-                  sceneAnimationType="opacity"
                   shifting={true}
                   barStyle={{
                     backgroundColor: CombinedDarkTheme.colors.secondary,
@@ -76,7 +75,7 @@ export default function App() {
                   // theme={CombinedDarkTheme}
                   // fånga upp när man klickar på ett ikon i navigeringsfältet https://stackoverflow.com/questions/60742984/react-native-navigation-v5-tab-press-not-working
                   screenListeners={{
-                    tabPress: (e) => {
+                    tabPress: () => {
                       console.log('Var tänkt att användas till något...')
                     },
                   }}

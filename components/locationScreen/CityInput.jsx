@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
+import PropTypes from 'prop-types'
 import { TextInput, Text, Button } from 'react-native-paper'
 import { View, Keyboard } from 'react-native'
 import { FetchSunPattern } from './FetchSunPattern'
 import { FadeInView } from '../FadeInView'
 
-export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
+export const CityInput = ({ fetchLocation, city, setCity }) => {
   const [lat, setLat] = useState('')
   const [lon, setLon] = useState('')
   const [visibleCity, setVisibleCity] = useState('')
@@ -22,7 +23,7 @@ export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
       <DataContainer>
         <FadeInView>
           {visibleCity && <Text variant="headlineLarge">{visibleCity}</Text>}
-          {lat && lon ? <FetchSunPattern lat={lat} lon={lon} /> : null}
+          {lat && lon && <FetchSunPattern lat={lat} lon={lon} />}
         </FadeInView>
       </DataContainer>
 
@@ -34,7 +35,7 @@ export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
           placeholder="Type something"
           value={city}
           onChangeText={(city) => setCity(city)}
-          onSubmitEditing={async (event) => {
+          onSubmitEditing={async () => {
             setVisibleCity(city)
             setCity('')
             await handleLatLonPromise()
@@ -42,7 +43,6 @@ export const CityInput = ({ navigation, fetchLocation, city, setCity }) => {
         />
         <Button
           mode="contained-tonal"
-          dark
           style={{ width: '75%', alignSelf: 'center', marginTop: 10 }}
           theme={{ roundness: 1.5 }}
           onPress={async () => {
@@ -70,3 +70,8 @@ const DataContainer = styled.View`
   /* border: 5px solid orange; */
   /* border-width: 5px; */
 `
+PropTypes.CityInput = {
+  fetchLocation: PropTypes.func,
+  city: PropTypes.string,
+  setCity: PropTypes.func,
+}

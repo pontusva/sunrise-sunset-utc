@@ -1,47 +1,27 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import { Appbar } from 'react-native-paper'
-import * as SplashScreen from 'expo-splash-screen'
+import { Appbar, useTheme } from 'react-native-paper'
 import { SunSet } from '../components/homeScreen/SunSet'
-import { useState, useEffect, useCallback } from 'react'
+
 import ThemeSwitch from '../components/ThemeSwitch'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-SplashScreen.preventAutoHideAsync()
-
-export const HomeScreen = ({ navigation }) => {
-  const [appIsReady, setAppIsReady] = useState(false)
-
-  useEffect(() => {
-    async function prepare() {
-      try {
-        // Pre-load fonts, make any API calls you need to do here
-        setAppIsReady(false)
-        // Artificially delay for two seconds to simulate a slow loading
-        // experience. Please remove this if you copy and paste the code!
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-      } catch (e) {
-        console.warn(e)
-      } finally {
-        // Tell the application to render
-        setAppIsReady(true)
-      }
-    }
-    prepare()
-  }, [])
-
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync()
-    }
-  }, [appIsReady])
-
-  if (!appIsReady) {
-    return null
-  }
+export const HomeScreen = () => {
+  const theme = useTheme()
   return (
     <>
-      <Container onLayout={onLayoutRootView}>
+      <Container>
         <Appbar.Header elevated statusBarHeight={5}>
+          <MaterialCommunityIcons
+            dark
+            style={{
+              color: theme.colors.onBackground,
+              marginLeft: 20,
+              // position: 'absolute',
+            }}
+            name="unicorn"
+            size={26}
+          />
           <Appbar.Content title="Home" />
 
           <ThemeSwitch />
