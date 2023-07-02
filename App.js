@@ -102,12 +102,12 @@ export default function App() {
                     }}
                   />
                   <Tab.Screen
-                    name="Profile"
+                    name="QR-Scanner"
                     component={ProfileScreen}
                     options={{
-                      tabBarLabel: 'Profile',
+                      tabBarLabel: 'QR',
                       tabBarIcon: () => (
-                        <MaterialCommunityIcons name="account" size={26} />
+                        <MaterialCommunityIcons name="qrcode-scan" size={26} />
                       ),
                     }}
                   />
